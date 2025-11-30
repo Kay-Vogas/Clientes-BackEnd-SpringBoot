@@ -1,0 +1,41 @@
+package com.estudos.clientes.model.entities;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Cliente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false,length = 150)
+    @NotEmpty
+    private String nome;
+
+    @Column(nullable = false,length = 150)
+    private String cpf;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "data_cadastro" , updatable = false)
+    private LocalDate dataCadastro;
+
+    @PrePersist
+    public void Prepersisti(){
+        setDataCadastro(LocalDate.now());
+    }
+
+}
