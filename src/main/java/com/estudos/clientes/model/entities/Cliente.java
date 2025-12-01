@@ -3,10 +3,12 @@ package com.estudos.clientes.model.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
@@ -27,6 +29,8 @@ public class Cliente {
     private String nome;
 
     @Column(nullable = false,length = 150)
+    @NotNull
+    @CPF
     private String cpf;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
