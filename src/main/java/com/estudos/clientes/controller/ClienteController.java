@@ -2,6 +2,7 @@ package com.estudos.clientes.controller;
 
 import com.estudos.clientes.model.entities.Cliente;
 import com.estudos.clientes.model.repository.ClienteRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente saveCliente(@RequestBody Cliente cliente ){
+    public Cliente saveCliente(@RequestBody @Valid Cliente cliente ){
         return this.clienteRepository.save(cliente);
     }
 
